@@ -112,6 +112,7 @@ export default class AutoStaker {
 
     console.log('Claim Rewards');
     await this.execute([this.mirror.staking.withdraw()]);
+    console.log('Rewards withdrawn');
 
     const balanceResponse = await this.mirror.mirrorToken.getBalance();
     const balance = new Int(balanceResponse.balance);
@@ -321,8 +322,12 @@ export default class AutoStaker {
       this.wallet.key.accAddress,
       this.assetTokenAddr
     );
+    const assetRewardInfo = rewardInfoResponse.reward_infos.find(
+      (rewardInfo) => rewardInfo.asset_token == poolInfo.asset_token
+    );
     const hasRewards =
-      poolInfo.reward_index !== rewardInfoResponse.reward_infos[0].index;
+      assetRewardInfo != undefined &&
+      parseInt(assetRewardInfo.pending_reward) != 0;
     if (!hasRewards) console.log('No Rewards to Claim this Interval');
     return hasRewards;
   }

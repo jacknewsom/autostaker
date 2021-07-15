@@ -78,8 +78,8 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "@mirror-protocol/mirror.js": "^1.1.6",
-    "@terra-money/terra.js": "^1.0.1",
+    "@mirror-protocol/mirror.js": "^2.0.0",
+    "@terra-money/terra.js": "^1",
     "dotenv": "^8.2.0"
   }
 }
